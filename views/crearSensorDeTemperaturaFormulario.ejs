@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Editar Usuario</title>
+    <!-- IMPORTAR NAVBAR -->
+    <%- include('partials/header') %>
+    <!-- IMPORTAR NAVBAR -->
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- IMPORTAR NAVBAR -->
+        <%- include('partials/navbar') %>
+            <!-- IMPORTAR NAVBAR -->
+
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+
+                <!-- Main Content -->
+                <div id="content">
+
+                    <!-- Topbar IMPORTAR -->
+                    <%- include('partials/topbar') %>
+
+                    <!-- End of Topbar IMPORTAR -->
+                    <!-- /.container-fluid -->
+                    <div class="container-fluid">
+
+                        <!-- Page Heading -->
+                        <h1 class="h3 mb-2 text-gray-800">Sensores de Temperatura</h1>
+                        <p class="mb-4">Formulario para crear un sensor de temperatura</p>
+
+                        <!-- DataTales Example -->
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">En esta sección puede crear un sensor de temperatura</h6>
+                            </div>
+                            <div class="card-body">
+                                <form action="/alta/sensor_de_temperatura" method="POST">
+                                    <div class="row">
+                                        <!-- Clave del sensor de temperatura -->
+                                        <div class="col-md-6 mb-3">
+                                            <label for="clave_sensor_de_temperatura" class="form-label">Clave del Sensor de Temperatura</label>
+                                            <input type="text" class="form-control" id="clave_sensor_de_temperatura" name="clave_sensor_de_temperatura" 
+                                                placeholder="Ingresa la clave del sensor" required>
+                                        </div>
+
+                                        <!-- Marca del sensor de temperatura -->
+                                        <div class="col-md-6 mb-3">
+                                            <label for="marca_sensor_de_temperatura" class="form-label">Marca del Sensor de Temperatura</label>
+                                            <input type="text" class="form-control" id="marca_sensor_de_temperatura" name="marca_sensor_de_temperatura" 
+                                                placeholder="Ingresa la marca del sensor" required>
+                                        </div>
+
+                                        <!-- Nombre del sensor de temperatura -->
+                                        <div class="col-md-6 mb-3">
+                                            <label for="nombre_sensor_de_temperatura" class="form-label">Nombre del Sensor de Temperatura</label>
+                                            <input type="text" class="form-control" id="nombre_sensor_de_temperatura" name="nombre_sensor_de_temperatura" 
+                                                placeholder="Ingresa el nombre del sensor" required>
+                                        </div>
+                                    </div>
+
+                                    <!-- Botón de Enviar -->
+                                    <button type="submit" class="btn btn-primary">Crear Sensor de Temperatura</button>
+                                </form>
+
+                                <!-- Modales de notificación -->
+                                <% if (typeof sensor_creado_exito !== 'undefined' && sensor_creado_exito === true) { %>
+                                    <script>
+                                        Swal.fire({
+                                            title: 'Sensor de Temperatura creado con éxito',
+                                            text: 'El sensor de temperatura se ha creado correctamente.',
+                                            icon: 'success',
+                                            confirmButtonText: 'Aceptar'
+                                        });
+                                    </script>
+                                <% } %>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.container-fluid -->
+
+
+
+
+                </div>
+                <!-- End of Main Content -->
+
+                <!-- Footer IMPORTAR-->
+                <%- include('partials/footer') %>
+                    <!-- End of Footer IMPORTAR  -->
+
+            </div>
+            <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">¿Enserio te vas?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Seleccione "Logout" a continuación si está listo para finalizar su sesión
+                    actual.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="/login/administrador">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('partials/scrips') %>
+</body>
+
+</html>

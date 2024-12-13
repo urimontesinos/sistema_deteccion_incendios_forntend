@@ -1,0 +1,175 @@
+<!-- Sidebar IMPORTAR -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard/administrador">
+        <div class="sidebar-brand-icon">
+            <i class="fas fa-tree"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Sistema Deteccion Incendios</div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" href="/dashboard/administrador">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Acciones
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers" aria-expanded="true"
+            aria-controls="collapseUsers">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Usuarios</span>
+        </a>
+        <div id="collapseUsers" class="collapse" aria-labelledby="headingUsers" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Gestión de Usuarios:</h6>
+                <a class="collapse-item" href="/mostrar/usuarios">Ver Usuarios</a>
+                <a class="collapse-item" href="/crear/usu">Crear Usuario</a>
+
+            </div>
+        </div>
+    </li>
+
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAreas" aria-expanded="true"
+            aria-controls="collapseAreas">
+            <i class="fas fa-fw fa-layer-group"></i>
+            <span>Áreas</span>
+        </a>
+        <div id="collapseAreas" class="collapse" aria-labelledby="headingAreas" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Gestión de Áreas:</h6>
+                <a class="collapse-item" href="/mostrar/areas">Ver Áreas</a>
+                <a class="collapse-item" href="/crear/area">Crear Área</a>
+            </div>
+        </div>
+    </li>
+
+
+
+
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAreasAdministradas" aria-expanded="true"
+            aria-controls="collapseAreasAdministradas">
+            <i class="fas fa-fw fa-layer-group"></i>
+            <span>Áreas Administradas</span>
+        </a>
+        <div id="collapseAreasAdministradas" class="collapse" aria-labelledby="headingAreas" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Gestión:</h6>
+                <a class="collapse-item" href="/mostrar/areasAdministradas">Ver Áreas Administradas</a>
+                <a class="collapse-item" href="/crear/areaAdministrada">Crear Área Administrada</a>
+            </div>
+        </div>
+    </li>
+
+
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePrototipos"
+            aria-expanded="true" aria-controls="collapsePrototipos">
+            <i class="fas fa-fw fa-cubes"></i>
+            <span>Prototipos</span>
+        </a>
+        <div id="collapsePrototipos" class="collapse" aria-labelledby="headingPrototipos"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Gestión de Prototipos:</h6>
+                <a class="collapse-item" href="/mostrar/prototipos">Ver Prototipos</a>
+                <a class="collapse-item" href="/crear/prototipo">Crear Prototipo</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCamaras"
+            aria-expanded="true" aria-controls="collapseCamaras">
+            <i class="fas fa-fw fa-video"></i>
+            <span>Cámaras</span>
+        </a>
+        <div id="collapseCamaras" class="collapse" aria-labelledby="headingCamaras" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Gestión de Cámaras:</h6>
+                <a class="collapse-item" href="/mostrar/camaras">Ver Cámaras</a>
+                <a class="collapse-item" href="/crear/camara">Crear Cámara</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTempSensors"
+            aria-expanded="true" aria-controls="collapseTempSensors">
+            <i class="fas fa-fw fa-thermometer-half"></i>
+            <span>Sensores de Temperatura</span>
+        </a>
+        <div id="collapseTempSensors" class="collapse" aria-labelledby="headingTempSensors"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Gestión de Sensores:</h6>
+                <a class="collapse-item" href="/mostrar/sensores_de_temperatura">Ver Sensores</a>
+                <a class="collapse-item" href="/crear/sensor_de_temperatura">Crear Sensor</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSmokeSensors"
+            aria-expanded="true" aria-controls="collapseSmokeSensors">
+            <i class="fas fa-fw fa-smog"></i>
+            <span>Sensores de Humo</span>
+        </a>
+        <div id="collapseSmokeSensors" class="collapse" aria-labelledby="headingSmokeSensors"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Gestión de Sensores:</h6>
+                <a class="collapse-item" href="/mostrar/sensores_de_humo">Ver Sensores</a>
+                <a class="collapse-item" href="/crear/sensor_de_humo">Crear Sensor</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="/mostrar/alertas">
+            <i class="fas fa-fw fa-cogs"></i>
+            <span>Alertas</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="/mostrar/registros_de_telemetria">
+            <i class="fas fa-fw fa-chart-line"></i>
+            <span>Registros de Telemetría</span>
+        </a>
+    </li>
+
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="/formulario/humbrales">
+            <i class="fas fa-fw fa-cogs"></i>
+            <span>Modificar Umbrales Sensores</span>
+        </a>
+    </li>
+    
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+
+</ul>
+<!-- End of Sidebar IMPORTAR -->

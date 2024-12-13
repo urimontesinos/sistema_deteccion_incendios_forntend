@@ -1,0 +1,107 @@
+    <!-- Bootstrap core JavaScript-->
+    <script src="../public/vendor/jquery/jquery.min.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    
+    <script>
+        // Función para consultar las alertas y manejar la lógica
+        async function verificarAlertas() {
+            try {
+                // Llamada a la API de alertas
+                const response = await fetch(`/api/alertas`);
+                if (!response.ok) throw new Error("Error al obtener las alertas");
+
+                const data = await response.json();
+
+                // Verificar si hay alertas
+                if (data.alertas && data.alertas.length > 0) {
+                    data.alertas.forEach(alerta => {
+                        mostrarAlerta(alerta);
+                    });
+                } else {
+
+                }
+            } catch (error) {
+                console.error("Error al verificar las alertas:", error);
+            }
+        }
+        // Función para mostrar una alerta en la interfaz (puede usar Toastr u otros mecanismos)
+        // Función para mostrar una alerta en la interfaz (Toastr u otros mecanismos)
+        function mostrarAlertaInterfaz(alerta) {
+            const mensaje = `
+                    <strong>Área:</strong> ${alerta.nombre_area}<br>
+                    <strong>Descripción:</strong> ${alerta.descripcion_alerta}<br>
+                    <strong>Nivel:</strong> ${alerta.nivel_alerta}<br>
+                    <strong>Fecha:</strong> ${alerta.fecha_hora_registro}<br>
+                    <a href="${alerta.imagen}" target="_blank">Ver Imagen</a>
+                `;
+
+            // Cambiar el estilo según el nivel de alerta
+            if (alerta.nivel_alerta === "Alerta Media") {
+                toastr.warning(mensaje, "Alerta Media", { timeOut: 8000, closeButton: true });
+            } else {
+                toastr.error(mensaje, "Alerta Detectada", { timeOut: 10000, closeButton: true });
+            }
+        }
+
+        // Función para mostrar una alerta en el navegador (Notificación y sonido)
+        function mostrarAlertaNavegador(alerta) {
+            let icono = null
+            if (alerta.nivel_alerta === "Alerta Media") {
+                icono = "https://png.pngtree.com/png-clipart/20230504/original/pngtree-alert-flat-icon-png-image_9138397.png"
+            }
+            else {
+                icono = "https://cdn-icons-png.freepik.com/512/10541/10541435.png"
+            }
+
+
+            if (Notification.permission === "granted") {
+                const notification = new Notification("Nueva alerta detectada", {
+                    body: `${alerta.descripcion_alerta} - Nivel: ${alerta.nivel_alerta}`,
+                    icon: icono,
+                });
+            }
+            else if (Notification.permission !== "denied") {
+                Notification.requestPermission().then(permission => {
+                    if (permission === "granted") {
+                        mostrarAlertaNavegador(alerta); // Llama de nuevo después de obtener permiso
+                    }
+                });
+            }
+
+
+
+        }
+
+        // Función principal para manejar ambas alertas
+        function mostrarAlerta(alerta) {
+            // Mostrar alerta en la interfaz
+            mostrarAlertaInterfaz(alerta);
+
+            // Mostrar alerta en el navegador
+            mostrarAlertaNavegador(alerta);
+        }
+        // Configurar el intervalo de consulta (por ejemplo, cada 5 segundos)
+        const INTERVALO_CONSULTA = 5000; // 5000 ms = 5 segundos
+
+        // Configurar la consulta periódica de alertas
+        setInterval(verificarAlertas, INTERVALO_CONSULTA);
+
+        // Llamada inicial para verificar las alertas al cargar la página
+        verificarAlertas();
+    </script>
+    
+
+
+    <script src="../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="../public/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="../public/js/sb-admin-2.min.js"></script>
+    <!-- Page level plugins -->
+    <script src="../public/vendor/chart.js/Chart.min.js"></script>
+    <!-- Page level custom scripts -->
+    <script src="../public/js/demo/chart-area-demo.js"></script>
+    <script src="../public/js/demo/chart-pie-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

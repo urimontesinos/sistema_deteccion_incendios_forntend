@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Mostrar Areas</title>
+    <!-- IMPORTAR NAVBAR -->
+    <%- include('partials/header') %>
+    <!-- IMPORTAR NAVBAR -->
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- IMPORTAR NAVBAR -->
+        <%- include('partials/navbar') %>
+        <!-- IMPORTAR NAVBAR -->
+
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar IMPORTAR -->
+                <%- include('partials/topbar') %>
+                <!-- End of Topbar IMPORTAR -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Areas</h1>
+                    <p class="mb-4">Lista de areas en el sistema</p>
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">En esta seccion puede editar o eliminar areas</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre del Área</th>
+                                            <th style="text-align: center; vertical-align: middle;">Acciones</th> <!-- Nueva columna para botones -->
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Nombre del Área</th>
+                                            <th style="text-align: center; vertical-align: middle;">Acciones</th> <!-- Nueva columna para botones -->
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <% areas.forEach(area => { %>
+                                            <tr>
+                                                <td><%= area.nombre_area %></td>
+                                                <td style="text-align: center; vertical-align: middle;">
+                                                    <!-- Formulario para Editar -->
+                                                    <form action="/formulario/area" method="POST" style="display:inline;">
+                                                        <input type="hidden" name="id_area" value="<%= area.id_area %>">
+                                                        <button type="submit" class="btn btn-primary">
+                                                            <i class="fas fa-edit"></i> Editar
+                                                        </button>
+                                                    </form>
+                                
+                                                    <!-- Formulario para Eliminar -->
+                                                    <form action="/eliminar/area" method="POST" style="display:inline;">
+                                                        <input type="hidden" name="id_area" value="<%= area.id_area %>">
+                                                        <button type="submit" class="btn btn-danger">
+                                                            <i class="fas fa-trash"></i> Eliminar
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        <% }) %>
+                                    </tbody>
+                                </table>
+                                
+
+
+                                <!-- modales de notificacion -->
+                                <script>
+                                    <% if (typeof actualizacion_exitosa !== 'undefined' && actualizacion_exitosa === true) { %>
+                                      Swal.fire({
+                                        title: '¡Actualización exitosa!',
+                                        text: 'El área ha sido actualizado correctamente.',
+                                        icon: 'success',
+                                        confirmButtonText: 'Aceptar'
+                                      });
+                                    <% } %>
+                                  </script>
+
+                                <% if (typeof eliminacion_exitosa !== 'undefined' && eliminacion_exitosa === true) { %>
+                                    <script>
+                                    Swal.fire({
+                                        title: '¡Eliminación exitosa!',
+                                        text: 'El área ha sido eliminado correctamente.',
+                                        icon: 'success',
+                                        confirmButtonText: 'Aceptar'
+                                    });
+                                    </script>
+                                <% } %>
+
+
+                                <% if (typeof area_con_usuario !== 'undefined' && area_con_usuario === true) { %>
+                                    <script>
+                                      Swal.fire({
+                                        title: 'No se puede eliminar el área',
+                                        text: 'El área no se puede eliminar porque esta asociada a un usuario.',
+                                        icon: 'error',
+                                        confirmButtonText: 'Aceptar'
+                                      });
+                                    </script>
+                                <% } %>
+                                
+
+                                <% if (typeof areas_con_proto !== 'undefined' && areas_con_proto === true) { %>
+                                    <script>
+                                      Swal.fire({
+                                        title: 'No se puede eliminar el área',
+                                        text: 'El área no se puede eliminar porque esta asociada a un prototipo.',
+                                        icon: 'error',
+                                        confirmButtonText: 'Aceptar'
+                                      });
+                                    </script>
+                                <% } %>
+
+
+
+                            </div>                            
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer IMPORTAR-->
+            <%- include('partials/footer') %>
+            <!-- End of Footer IMPORTAR  -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="/login/administrador">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('partials/scrips') %>
+</body>
+
+</html>

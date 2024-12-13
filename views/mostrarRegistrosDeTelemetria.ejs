@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Mostrar Areas</title>
+    <!-- IMPORTAR NAVBAR -->
+    <%- include('partials/header') %>
+    <!-- IMPORTAR NAVBAR -->
+
+</head>
+
+<body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- IMPORTAR NAVBAR -->
+        <%- include('partials/navbar') %>
+        <!-- IMPORTAR NAVBAR -->
+
+
+         <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+
+                <!-- Main Content -->
+                <div id="content">
+
+                    <!-- Topbar IMPORTAR -->
+                    <%- include('partials/topbar') %>
+                    <!-- End of Topbar IMPORTAR -->
+
+                    <!-- Begin Page Content -->
+                    <div class="container-fluid">
+
+                        <!-- Page Heading -->
+                        <h1 class="h3 mb-2 text-gray-800">Registros de Telemetría</h1>
+                        <p class="mb-4">Lista de registros de telemetría en el sistema</p>
+
+                        <!-- DataTales Example -->
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">En esta sección puede eliminar registros de telemetría</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>ID Registro</th>
+                                                <th>Fecha y Hora</th>
+                                                <th>CO2</th>
+                                                <th>Humo</th>
+                                                <th>Temperatura</th>
+                                                <th>Humedad</th>
+                                                <th>LPG</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th>ID Registro</th>
+                                                <th>Fecha y Hora</th>
+                                                <th>CO2</th>
+                                                <th>Humo</th>
+                                                <th>Temperatura</th>
+                                                <th>Humedad</th>
+                                                <th>LPG</th>
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                            <!-- Este contenido será llenado dinámicamente por JavaScript -->
+                                        </tbody>
+                                    </table>
+
+                                    <!-- Modales de notificación -->
+                                    <script>
+                                        <% if (typeof eliminacion_exitosa !== 'undefined' && eliminacion_exitosa === true) { %>
+                                            Swal.fire({
+                                                title: '¡Eliminación exitosa!',
+                                                text: 'El registro de telemetría ha sido eliminado correctamente.',
+                                                icon: 'success',
+                                                confirmButtonText: 'Aceptar'
+                                            });
+                                        <% } %>
+
+                                        <% if (typeof registro_asociado !== 'undefined' && registro_asociado === true) { %>
+                                            Swal.fire({
+                                                title: 'No se puede eliminar el registro',
+                                                text: 'El registro no se puede eliminar porque está asociado a un área.',
+                                                icon: 'error',
+                                                confirmButtonText: 'Aceptar'
+                                            });
+                                        <% } %>
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.container-fluid -->
+
+                </div>
+                <!-- End of Main Content -->
+
+
+
+                <!-- Footer IMPORTAR -->
+                <%- include('partials/footer') %>
+                <!-- End of Footer IMPORTAR -->
+
+            </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="/login/administrador">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        async function actualizarTablaRegistrosDeTelemetria() {
+            try {
+                // Llamada a la API
+                const response = await fetch('/api/registros_de_telemetria');
+                if (!response.ok) throw new Error('Error al obtener los registros de telemetría');
+    
+                const registros = await response.json();
+    
+                // Seleccionar el cuerpo de la tabla
+                const tbody = document.querySelector("#dataTable tbody");
+                tbody.innerHTML = ""; // Limpia el contenido existente
+    
+                // Generar nuevas filas
+                registros.forEach(registro => {
+                    const fila = `
+                        <tr>
+                            <td>${registro.id_registro}</td>
+                            <td>${registro.fecha_hora_registro}</td>
+                            <td>${registro.co2}</td>
+                            <td>${registro.humo}</td>
+                            <td>${registro.temperatura}</td>
+                            <td>${registro.humedad}</td>
+                            <td>${registro.lpg}</td>
+                        </tr>
+                    `;
+                    tbody.innerHTML += fila;
+                });
+            } catch (error) {
+                console.error("Error al actualizar la tabla:", error);
+            }
+        }
+    
+        // Llama a la función cada 2 segundos
+        setInterval(actualizarTablaRegistrosDeTelemetria, 2000);
+    
+        // Llama a la función por primera vez al cargar la página
+        actualizarTablaRegistrosDeTelemetria();
+    </script>
+    
+    
+      
+
+    <%- include('partials/scrips') %>
+</body>
+
+</html>

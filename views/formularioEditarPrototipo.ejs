@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Editar Usuario</title>
+    <!-- IMPORTAR NAVBAR -->
+    <%- include('partials/header') %>
+    <!-- IMPORTAR NAVBAR -->
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- IMPORTAR NAVBAR -->
+        <%- include('partials/navbar') %>
+            <!-- IMPORTAR NAVBAR -->
+
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+
+                <!-- Main Content -->
+                <div id="content">
+
+                    <!-- Topbar IMPORTAR -->
+                    <%- include('partials/topbar') %>
+                    <!-- End of Topbar IMPORTAR -->
+
+                    <!-- .container-fluid -->
+                    <div class="container-fluid">
+
+                        <!-- Page Heading -->
+                        <h1 class="h3 mb-2 text-gray-800">Prototipos</h1>
+                        <p class="mb-4">Formulario para editar un prototipo</p>
+
+                        <!-- DataTales Example -->
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">En esta sección puede editar un prototipo</h6>
+                            </div>
+                            <div class="card-body">
+                                <form action="/actualizar/prototipo" method="POST">
+                                    <div class="row">
+                                        <!-- ID del prototipo -->
+                                        <input type="hidden" name="id_prototipo" value="<%= prototipoActualizar.id_prototipo %>">
+
+                                        <!-- ID del área -->
+                                        <div class="col-md-6 mb-3">
+                                            <label for="id_area" class="form-label">ID del Área</label>
+                                            <input type="number" class="form-control" id="id_area" name="id_area" value="<%= prototipoActualizar.id_area %>" required>
+                                        </div>
+                                    </div>
+
+                                    <!-- Botón de Enviar -->
+                                    <button type="submit" class="btn btn-primary">Editar Prototipo</button>
+                                </form>
+
+                                <!-- Modales de notificación -->
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.container-fluid -->
+
+
+
+                </div>
+                <!-- End of Main Content -->
+
+                <!-- Footer IMPORTAR-->
+                <%- include('partials/footer') %>
+                    <!-- End of Footer IMPORTAR  -->
+
+            </div>
+            <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">¿Enserio te vas?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Seleccione "Logout" a continuación si está listo para finalizar su sesión
+                    actual.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="/login/administrador">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('partials/scrips') %>
+</body>
+
+</html>

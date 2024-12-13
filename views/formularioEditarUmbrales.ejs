@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Editar Usuario</title>
+    <!-- IMPORTAR NAVBAR -->
+    <%- include('partials/header') %>
+    <!-- IMPORTAR NAVBAR -->
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- IMPORTAR NAVBAR -->
+        <%- include('partials/navbar') %>
+            <!-- IMPORTAR NAVBAR -->
+
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+
+                <!-- Main Content -->
+                <div id="content">
+
+                    <!-- Topbar IMPORTAR -->
+                    <%- include('partials/topbar') %>
+                    <!-- End of Topbar IMPORTAR -->
+                         
+                        <!-- .container-fluid -->
+                        <div class="container-fluid">
+                        
+                            <!-- Page Heading -->
+                            <h1 class="h3 mb-2 text-gray-800">Umbrales Sensores</h1>
+                            <p class="mb-4">Formulario para editar los valores de los umbrales de los sensores</p>
+                        
+                            <!-- Formulario de actualización de umbrales -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Editar Umbrales</h6>
+                                </div>
+                                <div class="card-body">
+                                    <form action="/actualizar/umbrales" method="POST">
+                                        <div class="row">
+                        
+                                            <!-- Umbral: Humedad moderada -->
+                                            <div class="col-md-6 mb-3">
+                                                <label for="humedad_moderada_max" class="form-label">
+                                                    Valor moderado de humedad (%) <br>
+                                                    <small>Si la humedad baja de este valor se generará una alerta de nivel Medio</small>
+                                                </label>
+                                                <input type="number" step="any" class="form-control" id="humedad_moderada_max"
+                                                    name="humedad_moderada_max" value="<%= umbralesActualizar.humedad_moderada_max %>" required>
+                                            </div>
+                        
+                                            <!-- Umbral: Humedad crítica -->
+                                            <div class="col-md-6 mb-3">
+                                                <label for="humedad_critica_max" class="form-label">
+                                                    Valor crítico de humedad (%) <br>
+                                                    <small>Si la humedad baja de este valor se generará una alerta de nivel crítico</small>
+                                                </label>
+                                                <input type="number" step="any" class="form-control" id="humedad_critica_max"
+                                                    name="humedad_critica_max" value="<%= umbralesActualizar.humedad_critica_max %>" required>
+                                            </div>
+                        
+                                            <!-- Umbral: Temperatura moderada -->
+                                            <div class="col-md-6 mb-3">
+                                                <label for="temperatura_moderada_min" class="form-label">
+                                                    Valor moderador de temperatura (°C) <br>
+                                                    <small>Si la temperatura supera este valor se generará una alerta de nivel medio</small>
+                                                </label>
+                                                <input type="number" step="any" class="form-control" id="temperatura_moderada_min"
+                                                    name="temperatura_moderada_min" value="<%= umbralesActualizar.temperatura_moderada_min %>"
+                                                    required>
+                                            </div>
+                        
+                                            <!-- Umbral: Temperatura crítica -->
+                                            <div class="col-md-6 mb-3">
+                                                <label for="temperatura_critica_min" class="form-label">
+                                                    Valor crítico de temperatura (°C) <br>
+                                                    <small>Si la temperatura supera este valor se generará una alerta de nivel crítico</small>
+                                                </label>
+                                                <input type="number" step="any" class="form-control" id="temperatura_critica_min"
+                                                    name="temperatura_critica_min" value="<%= umbralesActualizar.temperatura_critica_min %>"
+                                                    required>
+                                            </div>
+                        
+                                            <!-- Umbral: Humo moderado -->
+                                            <div class="col-md-6 mb-3">
+                                                <label for="humo_moderado_min" class="form-label">
+                                                    Valor moderador de humo (ppm) <br>
+                                                    <small>Si el humo supera este valor se generará una alerta de nivel medio</small>
+                                                </label>
+                                                <input type="number" step="any" class="form-control" id="humo_moderado_min"
+                                                    name="humo_moderado_min" value="<%= umbralesActualizar.humo_moderado_min %>" required>
+                                            </div>
+                        
+                                            <!-- Umbral: Humo crítico -->
+                                            <div class="col-md-6 mb-3">
+                                                <label for="humo_critico_min" class="form-label">
+                                                    Valor crítico de humo (ppm) <br>
+                                                    <small>Si el humo supera este valor se generará una alerta de nivel crítico</small>
+                                                </label>
+                                                <input type="number" step="any" class="form-control" id="humo_critico_min"
+                                                    name="humo_critico_min" value="<%= umbralesActualizar.humo_critico_min %>" required>
+                                            </div>
+                        
+                                            <!-- Umbral: CO2 moderado -->
+                                            <div class="col-md-6 mb-3">
+                                                <label for="co2_moderado_min" class="form-label">
+                                                    Valor moderador de CO2 (ppm) <br>
+                                                    <small>Si el CO2 supera este valor se generará una alerta de nivel medio</small>
+                                                </label>
+                                                <input type="number" step="any" class="form-control" id="co2_moderado_min"
+                                                    name="co2_moderado_min" value="<%= umbralesActualizar.co2_moderado_min %>" required>
+                                            </div>
+                        
+                                            <!-- Umbral: CO2 crítico -->
+                                            <div class="col-md-6 mb-3">
+                                                <label for="co2_critico_min" class="form-label">
+                                                    Valor crítico de CO2 (ppm) <br>
+                                                    <small>Si el CO2 supera este valor se generará una alerta de nivel crítico</small>
+                                                </label>
+                                                <input type="number" step="any" class="form-control" id="co2_critico_min" name="co2_critico_min"
+                                                    value="<%= umbralesActualizar.co2_critico_min %>" required>
+                                            </div>
+                        
+                                            <!-- Umbral: LPG moderado -->
+                                            <div class="col-md-6 mb-3">
+                                                <label for="lpg_moderado_min" class="form-label">
+                                                    Valor moderador de LPG (ppm) <br>
+                                                    <small>Si el LPG supera este valor se generará una alerta de nivel medio</small>
+                                                </label>
+                                                <input type="number" step="any" class="form-control" id="lpg_moderado_min"
+                                                    name="lpg_moderado_min" value="<%= umbralesActualizar.lpg_moderado_min %>" required>
+                                            </div>
+                        
+                                            <!-- Umbral: LPG crítico -->
+                                            <div class="col-md-6 mb-3">
+                                                <label for="lpg_critico_min" class="form-label">
+                                                    Valor crítico de LPG (ppm) <br>
+                                                    <small>Si el LPG supera este valor se generará una alerta de nivel crítico</small>
+                                                </label>
+                                                <input type="number" step="any" class="form-control" id="lpg_critico_min" name="lpg_critico_min"
+                                                    value="<%= umbralesActualizar.lpg_critico_min %>" required>
+                                            </div>
+                                        </div>
+                        
+                                        <!-- Botón de Enviar -->
+                                        <button type="submit" class="btn btn-primary">Editar Umbrales</button>
+                                    </form>
+                                    <!-- modales de notificacion -->
+                                    <script>
+                                        <% if (typeof actualizacion_exitosa !== 'undefined' && actualizacion_exitosa === true) { %>
+                                            Swal.fire({
+                                                title: '¡Actualización exitosa!',
+                                                text: 'Los umbrales han sido actualizado correctamente.',
+                                                icon: 'success',
+                                                confirmButtonText: 'Aceptar'
+                                            });
+                                        <% } %>
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.container-fluid -->
+  
+
+
+                </div>
+                <!-- End of Main Content -->
+
+                <!-- Footer IMPORTAR-->
+                <%- include('partials/footer') %>
+                    <!-- End of Footer IMPORTAR  -->
+
+            </div>
+            <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">¿Enserio te vas?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Seleccione "Logout" a continuación si está listo para finalizar su sesión
+                    actual.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="/login/administrador">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('partials/scrips') %>
+</body>
+
+</html>
